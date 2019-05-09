@@ -13,5 +13,6 @@ const store = (function(){
     sayHello,
     items: [],
     error: '',
+    addItem
   };
 }());
