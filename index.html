@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bookmarks</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <header role="banner">
+      <h1>Bookmarks</h1>
+    </header>
+    <div class="main_buttons">
+      <form id="js_add_item">
+        <button name="addItem">Add Bookmark</button>
+      </form>
+      <form id="js_filter_item">
+        <select class="" name="filterStars">
+          <option value="" disabled selected>Filter Bookmarks <i class="material-icons">arrow_downward</i></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </form>
+    </div>
+    <div class="create_form_div">
+      <form id="js_create_form">
+        <input type="text" name="itemName" class="itemName" placeholder="Bookmark Name">
+        <input type="text" name="itemURL" class="itemURL" placeholder="Bookmark URL">
+        <select class="" name="itemStars">
+          <option value="" disabled selected>Bookmark Rating <i class="material-icons">arrow_downward</i></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="text" name="itemDescription" class="itemDescription" placeholder="Bookmark Description">
+      </form>
+    </div>
+    <ul class="bookmarks_results extended">
+      <h1>Extended &lt;li&gt; element</h1>
+      <li class="bookmark extended">
+        <p class="bookmark_title">Extended Title</p>
+        <ul class="bookmark_stars">
+          <li class="star"><i class="material-icons">star</i></li>
+          <li class="star"><i class="material-icons">star</i></li>
+          <li class="star"><i class="material-icons">star</i></li>
+        </ul>
+        <p class="bookmark_description">Bookmark Description (Extended item)</p>
+        <p class="bookmark_url"><a href="#">Visit Site</a></p>
+        <div class="bookmark_edit">
+          <button type="button" name="editButton">Edit Bookmark</button>
+          <button type="button" name="deleteButton">Delete</button>
+        </div>
+      </li>
+    </ul>
+    <ul class="bookmarks_results ">
+      <h1>Regular &lt;li&gt; element</h1>
+      <li class="bookmark ">
+        <p class="bookmark_title">Title</p>
+        <ul class="bookmark_stars">
+          <li class="star"><i class="material-icons">star</i></li>
+          <li class="star"><i class="material-icons">star</i></li>
+          <li class="star"><i class="material-icons">star</i></li>
+        </ul>
+        <div class="bookmark_edit">
+          <button type="button" name="editButton">Edit Bookmark</button>
+          <button type="button" name="deleteButton">Delete</button>
+        </div>
+      </li>
+    </ul>
+    <ul class="bookmarks_results ">
+      <h1>Editing &lt;li&gt; element</h1>
+      <li class="bookmark edit_item">
+        <input class="bookmark_title" placeholder="Edit Bookmark"></input>
+        <select class="" name="itemStars">
+          <option value="" disabled selected>Bookmark Rating <i class="material-icons">arrow_downward</i></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input class="bookmark_description" placeholder="Edit Bookmark Description">
+        <input class="bookmark_url" placeholder="Edit URL">
+        <div class="bookmark_edit">
+          <button type="button" name="cancelButton">Cancel Edit</button>
+          <button type="button" name="deleteButton">Delete</button>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- <script type="text/javascript" src="scripts/api.js"></script>
+  <script type="text/javascript" src="scripts/Item.js"></script>
+  <script type="text/javascript" src="scripts/store.js"></script>
+  <script type="text/javascript" src="scripts/bookmarks.js"></script> -->
+  <script type="text/javascript" src="scripts/index.js"></script>
+
+</body>
+</html>

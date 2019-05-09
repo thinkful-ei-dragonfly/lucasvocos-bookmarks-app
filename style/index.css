@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  color: #222;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+button, input[type="text"], select, option {
+  padding: 0.5em 1em;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.create_form_div {
+  border: 1px solid #222;
+}
+.bookmark_stars {
+  list-style-type: none;
+}
+.star {
+  display: inline;
+}
