@@ -46,9 +46,19 @@ const api = (function(){
     };
     return baseFetchMethod(BASE_URL, options);
   }
+  function deletebookmark(bookmarkID) {
+    const options = {
+      method: 'DELETE',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    };
+    return baseFetchMethod(`${BASE_URL}/${bookmarkID}`, options);
+  }
   return {
     sayHello,
     getItems,
-    createBookmark
+    createBookmark,
+    deletebookmark
   };
 }());

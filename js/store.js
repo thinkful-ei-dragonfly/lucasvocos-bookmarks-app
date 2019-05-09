@@ -9,10 +9,16 @@ const store = (function(){
     this.items.push(item);
   };
 
+  const findAndDelete = function(id) {
+    this.items = this.items.filter(item => item.id !== id);
+  };
+
   return {
     sayHello,
     items: [],
     error: '',
-    addItem
+    addingState: false,
+    addItem,
+    findAndDelete
   };
 }());
