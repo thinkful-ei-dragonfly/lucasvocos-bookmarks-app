@@ -13,12 +13,18 @@ const store = (function(){
     this.items = this.items.filter(item => item.id !== id);
   };
 
+  const resetList = function(selectedNum) {
+    this.searchRating = selectedNum;
+  };
+
   return {
     sayHello,
     items: [],
     error: '',
+    searchRating: false,
     addingState: false,
     addItem,
-    findAndDelete
+    findAndDelete,
+    resetList
   };
 }());

@@ -26,3 +26,6 @@ button:hover {
 .star {
   display: inline;
 }
+.hidden {
+  display: none;
+}

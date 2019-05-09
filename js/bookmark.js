@@ -12,6 +12,9 @@ const bookmark = (function(){
     if (store.addingState) {
       $('.create_form_div').removeClass('hidden');
     }
+    if (store.searchRating) {
+      items = store.items.filter(item => item.rating > (store.searchRating-1));
+    }
 
     // This function will render the shopping list in the DOM
     const bookmarkItemsString = generatebookmarkItemString(items);
@@ -60,11 +63,13 @@ const bookmark = (function(){
     const items = bookmarkList.map((item) => generateBookmarkItem(item));
     return items;
   }
+  // Read
   function getItemIdFromElement(item) {
     return $(item)
       .closest('.bookmark')
       .data('item-id');
   }
+  // Create
   function handleNewBookmarkSubmit() {
     $('#js_create_form').submit(event => {
       event.preventDefault();
@@ -81,6 +86,7 @@ const bookmark = (function(){
         });
     });
   }
+  // Delete
   function handleDeleteItemClicked(){
     console.log('handle item delete');
     $('.bookmarks_results').on('click', 'button.js_delete', event => {
@@ -97,9 +103,19 @@ const bookmark = (function(){
     });
 
   }
+  // Filter
+  function handleFilter() {
+    $('#js_filter_item').on('submit', event =>{
+      event.preventDefault();
+      let selectedNum = Number.parseInt(event.target[0].value);
+      store.resetList(selectedNum);
+      render();
+    });
+  }
   function bindEventListeners() {
     handleNewBookmarkSubmit();
     handleDeleteItemClicked();
+    handleFilter();
   }
   return {
     bindEventListeners,
