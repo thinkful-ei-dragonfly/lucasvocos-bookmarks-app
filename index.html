@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   <title>Bookmarks</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,11 +33,11 @@
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <input type="submit" name="filterBookmarks" placeholder="Filter">
+        <button type="submit" name="filterBookmarks" placeholder="Filter">Filter</button>
       </form>
     </div>
     <div class="create_form_div">
-      <form id="js_create_form">
+      <form id="js_create_form" class="hidden">
         <input type="text" name="title" class="itemName" placeholder="Bookmark Name">
         <input type="text" name="url" class="itemURL" placeholder="Bookmark URL">
         <select class="" name="rating">
@@ -42,29 +49,13 @@
           <option value="5">5</option>
         </select>
         <input type="text" name="desc" class="itemDescription" placeholder="Bookmark Description">
-        <input type="submit" name="itemSubmit" placeholder="Create">
+        <input type="submit" name="itemSubmit" class="itemSubmit" placeholder="Create">
+        <button type="submit" name="itemCancel" class="itemCancel" placeholder="Cancel">Cancel</button
       </form>
     </div>
     <div class="js-error-message hidden">
       <p>Error message goes here. X button will erase the error from the store</p>
     </div>
-    <!-- <ul class="bookmarks_results extended">
-      <h1>Extended &lt;li&gt; element</h1>
-      <li class="bookmark extended">
-        <p class="bookmark_title">Extended Title</p>
-        <ul class="bookmark_stars">
-          <li class="star"><i class="material-icons">star</i></li>
-          <li class="star"><i class="material-icons">star</i></li>
-          <li class="star"><i class="material-icons">star</i></li>
-        </ul>
-        <p class="bookmark_description">Bookmark Description (Extended item)</p>
-        <p class="bookmark_url"><a href="#">Visit Site</a></p>
-        <div class="bookmark_edit">
-          <button type="button" name="editButton">Edit Bookmark</button>
-          <button type="button" name="deleteButton">Delete</button>
-        </div>
-      </li>
-    </ul> -->
     <ul class="bookmarks_results">
 
     </ul>

@@ -24,51 +24,122 @@ const bookmark = (function(){
 
   }
   function generateBookmarkItem(item){
-    let bookmark;
-    if (!item.isEditing) {
-      bookmark = `
-      <li class="bookmark " data-item-id="${item.id}">
-        <p class="bookmark_title">${item.title}</p>
-        <p class="bookmark_stars">${item.rating} Stars</p>
-        <div class="bookmark_edit">
-          <button type="button" name="editButton" class="js_edit">Edit Bookmark</button>
-          <button type="button" name="deleteButton" class="js_delete">Delete</button>
-        </div>
-      </li>
-      `;
-    } else {
-      bookmark = `
-      <li class="bookmark edit_item" data-item-id="${item.id}">
-        <input class="bookmark_title" placeholder="Edit Bookmark"></input>
-        <select class="" name="itemStars">
-          <option value="" disabled selected>Bookmark Rating <i class="material-icons">arrow_downward</i></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <input class="bookmark_description" placeholder="Edit Bookmark Description">
-        <input class="bookmark_url" placeholder="Edit URL">
-        <div class="bookmark_edit">
-          <button type="button" name="cancelButton" class="js_edit">Cancel Edit</button>
-          <button type="button" name="deleteButton" class="js_delete">Delete</button>
-        </div>
-      </li>
+    let expanded = '',
+      itemRatingString = '',
+      itemRating = item.rating;
+
+    for (var i = 0; i < itemRating; i++) {
+      itemRatingString += '<i class="material-icons">star</i>';
+    }
+    let itemTitle = `<p class="bookmark_title">${item.title}</p><p class="bookmark_stars">${itemRatingString}</p>`;
+
+
+    if (item.isEditing) {
+      itemTitle = `
+      <form id="editBookmark">
+          <input class="bookmark_title" placeholder="${item.title}"></input>
+          <select class="" name="itemStars">
+            <option value="" disabled selected>Bookmark Rating</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <input class="bookmark_description" placeholder="${item.desc}">
+          <input class="bookmark_url" placeholder="${item.url}">
+          <button type="submit" name="submitEdit" class="js_edit_submit">Update</button>
+      </form>
       `;
     }
-    return bookmark;
+    if (item.expanded) {
+      expanded = `
+      <p class='bookmark_description'>${item.desc}</p>
+      <a href="${item.url}" target="_blank" class="bookmark_url">Visit</a>
+      `;
+    }
+
+
+    return `
+    <li class="bookmark " data-item-id="${item.id}">
+      ${itemTitle}
+      ${expanded}
+      <div class="bookmark_edit">
+        <button type="button" name="editButton" class="js_edit">Edit Bookmark</button>
+        <button type="button" name="deleteButton" class="js_delete">Delete</button>
+      </div>
+    </li>
+    `;
   }
+
   function generatebookmarkItemString(bookmarkList){
     const items = bookmarkList.map((item) => generateBookmarkItem(item));
     return items;
   }
+
   // Read
   function getItemIdFromElement(item) {
     return $(item)
       .closest('.bookmark')
       .data('item-id');
   }
+
+  function handleExpandBookmark(){
+    $('.bookmarks_results').on('click', '.bookmark_title', event => {
+      let bookmarkItemID = getItemIdFromElement(event.currentTarget);
+      const currentItem = store.items.find(item => item.id === bookmarkItemID);
+      store.findAndUpdate(bookmarkItemID, { expanded: !currentItem.expanded });
+      render();
+
+    });
+  }
+  // Start Edit
+  function handleBookmarkItemStartEditing(){
+    $('.bookmarks_results').on('click', '.js_edit', event => {
+      const id = getItemIdFromElement(event.target);
+      store.setItemIsEditing(id, true);
+      render();
+    });
+  }
+  // Cancel Edit
+  function handleBookmarkItemCancelEditing(){
+    $('.bookmarks_results').on('click', '.js_edit_cancel', event => {
+      const id = getItemIdFromElement(event.target);
+      store.setItemIsEditing(id, false);
+      render();
+    });
+  }
+  // Submit Edit
+  // Update
+  function handleBookmarkSubmitEdit() {
+    $('#editBookmark').submit(event => {
+      event.preventDefault();
+      const id = getItemIdFromElement(event.currentTarget);
+      let newBookmark = $(event.target).serializeJson();
+      debugger;
+      api.updateItem(id, newBookmark)
+        .then(() => {
+          store.findAndUpdate(id, newBookmark);
+          render();
+        })
+        .catch(error => {
+          store.errorMessage = error.message;
+          render();
+        });
+      store.setItemIsEditing(id, false);
+      render();
+    });
+  }
+
+  // Open the create form
+  function handleClickAddBookmarkButton() {
+    $('.main_buttons').on('click', '#js_add_item', event => {
+      event.preventDefault();
+      $('#js_create_form').removeClass('hidden');
+      render();
+    });
+  }
+
   // Create
   function handleNewBookmarkSubmit() {
     $('#js_create_form').submit(event => {
@@ -86,9 +157,18 @@ const bookmark = (function(){
         });
     });
   }
+
+  // Cancel create
+  function handleCancelAddBookmark() {
+    $('#js_create_form').on('click', '.itemCancel', event => {
+      event.preventDefault();
+      $('#js_create_form').addClass('hidden');
+      render();
+    });
+  }
+
   // Delete
   function handleDeleteItemClicked(){
-    console.log('handle item delete');
     $('.bookmarks_results').on('click', 'button.js_delete', event => {
       const bookmarkID = getItemIdFromElement(event.currentTarget);
       api.deletebookmark(bookmarkID)
@@ -113,9 +193,15 @@ const bookmark = (function(){
     });
   }
   function bindEventListeners() {
+    handleClickAddBookmarkButton();
+    handleCancelAddBookmark();
+    handleExpandBookmark();
     handleNewBookmarkSubmit();
     handleDeleteItemClicked();
     handleFilter();
+    handleBookmarkItemStartEditing();
+    handleBookmarkItemCancelEditing();
+    handleBookmarkSubmitEdit();
   }
   return {
     bindEventListeners,

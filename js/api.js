@@ -46,6 +46,17 @@ const api = (function(){
     };
     return baseFetchMethod(BASE_URL, options);
   }
+  function updateItem(id, updateData) {
+    let updatedItem = JSON.stringify(updateData);
+    const options = {
+      method: 'PATCH',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: updatedItem,
+    };
+    return baseFetchMethod(`${BASE_URL}/${id}`, options);
+  }
   function deletebookmark(bookmarkID) {
     const options = {
       method: 'DELETE',
@@ -59,6 +70,7 @@ const api = (function(){
     sayHello,
     getItems,
     createBookmark,
-    deletebookmark
+    deletebookmark,
+    updateItem
   };
 }());
