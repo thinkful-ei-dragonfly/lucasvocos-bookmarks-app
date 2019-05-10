@@ -17,48 +17,58 @@
 
 <body>
   <div class="container">
-    <header role="banner">
-      <h1>Bookmarks</h1>
-    </header>
-    <div class="main_buttons">
-      <form id="js_add_item">
-        <button name="addItem">Add Bookmark</button>
-      </form>
-      <form id="js_filter_item">
-        <select class="" name="filterStars">
-          <option value="" disabled selected>Minimum Rating</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <button type="submit" name="filterBookmarks" placeholder="Filter">Filter</button>
-      </form>
-    </div>
-    <div class="create_form_div">
-      <form id="js_create_form" class="hidden">
-        <input type="text" name="title" class="itemName" placeholder="Bookmark Name">
-        <input type="text" name="url" class="itemURL" placeholder="Bookmark URL">
-        <select class="" name="rating">
-          <option value="" disabled selected>Bookmark Rating <i class="material-icons">arrow_downward</i></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <input type="text" name="desc" class="itemDescription" placeholder="Bookmark Description">
-        <input type="submit" name="itemSubmit" class="itemSubmit" placeholder="Create">
-        <button type="submit" name="itemCancel" class="itemCancel" placeholder="Cancel">Cancel</button
-      </form>
-    </div>
-    <div class="js-error-message hidden">
-      <p>Error message goes here. X button will erase the error from the store</p>
-    </div>
-    <ul class="bookmarks_results">
+    <div class="left_container">
+      <header role="banner">
+        <h1>📚 Bookmarks</h1>
+        <h3><span class="cap"><a href="https://www.thinkful.com/bootcamp/web-development/full-time/">Thinkful.com</a></span> Engineering Immersion API practice</h3>
+        <h3>Create, Describe, Edit, or Delete your favorite bookmarks from around the web below.</h3>
+      </header>
+      <div class="main_buttons">
+        <form id="js_add_item">
+          <button name="addItem" class="addItem">Add Bookmark</button>
+        </form>
+        <form id="js_filter_item">
+          <div class="selectContainer">
+            <select class="" name="filterStars">
+              <option value="" disabled selected>Minimum Rating ⬎</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
 
-    </ul>
+          <button type="submit" name="filterBookmarks" placeholder="Filter" class="filterBookmarks">Filter</button>
+        </form>
+      </div>
+      <div class="create_form_div hidden">
+        <form id="js_create_form">
+          <input type="text" name="title" class="itemName" placeholder="Bookmark Name">
+          <input type="text" name="url" class="itemURL" placeholder="Bookmark URL">
+          <div class="selectContainer">
+            <select class="" name="rating">
+              <option value="" disabled selected>Bookmark Rating ⬎</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <input type="text" name="desc" class="itemDescription" placeholder="Bookmark Description">
+          <input type="submit" name="itemSubmit" class="itemSubmit" placeholder="Create">
+          <button type="submit" name="itemCancel" class="itemCancel" placeholder="Cancel">Cancel</button
+        </form>
+      </div>
+      <div class="js-error-message hidden">
+        <p>Error message goes here. X button will erase the error from the store</p>
+      </div>
+    </div>
+    <div class="right_container">
+      <ul class="bookmarks_results" role="list">
+      </ul>
+    </div>
 
 
   </div>

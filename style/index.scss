@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 18px;
+  color: #222;
+  margin: 0;
+}
+body {
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+.container {
+  .left_container,
+  .right_container {
+    display: inline-block;
+  }
+  .left_container {
+    vertical-align: top;
+    max-width: 50%;
+  }
+  .right_container {
+    max-width: 49%;
+    .bookmark {
+      list-style-image: url('../img/baseline-subdirectory_arrow_right-24px.svg');
+      form#editBookmark {
+        display: flex;
+        flex-wrap: wrap;
+        .bookmark_title_edit,
+        .bookmark_url_edit,
+        .selectContainer_edit {
+          flex-grow: 1;
+        }
+        .bookmark_description_edit {
+          width: 75%;
+          border-right: none;
+        }
+        .selectContainer_edit {
+          border: 1px solid #00f;
+          text-align: center;
+        }
+        .bookmark_title_edit {
+          border-right: none;
+          border-bottom: none;
+        }
+        .bookmark_url_edit {
+          border-bottom: none;
+        }
+        .js_edit_submit {
+          width: 100%;
+          background: #00f;
+          margin-bottom: 1em;
+          color: white;
+        }
+      }
+      .bookmark_title {
+        font-size: 1.25em;
+        margin-bottom: 0;
+      }
+      .bookmark_stars {
+        margin-top: 0;
+      }
+      .bookmark_url {
+        // text-decoration: underline;
+        // margin-bottom: 1em;
+      }
+    }
+  }
+  .main_buttons {
+    display: flex;
+
+    .addItem {
+      border-right: none;
+    }
+    .filterBookmarks {
+      border-left: none;
+    }
+
+    form {
+      font-size: 1.25em;
+    }
+    #js_filter_item {
+      display: flex;
+    }
+  }
+  .create_form_div {
+    margin-top: 1em;
+    #js_create_form {
+      display: flex;
+      flex-wrap: wrap;
+      .itemName,
+      .itemURL,
+      .itemSubmit,
+      .itemCancel {
+        flex-grow: 1;
+      }
+      .itemDescription {
+        width: 75%;
+      }
+    }
+  }
+  padding: 2em;
+}
+header {
+  h1 {
+    font-size: 2.5em;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-weight: 500;
+    font-size: 1.5em;
+  }
+}
+
+span.cap {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color .2s ease;
+  &:hover {
+    color: #00f;
+  }
+}
+button, input[type="text"] {
+  padding: 0.5em 1em;
+}
+button, input[type="text"], .selectContainer, option {
+  background: transparent;
+  border: 1px solid #00f;
+  transition: all .2s ease;
+
+}
+select {
+  background: transparent;
+  border: 0px;
+  vertical-align: -webkit-baseline-middle;
+}
+button:hover {
+  cursor: pointer;
+  background: #00f;
+  color: white;
+}
+button.expand {
+  border: none;
+  &:hover {
+    color: #00f;
+    background: transparent;
+  }
+}
+input.itemSubmit {
+  background: #00f;
+  border: 1px solid #00f;
+  color: white;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.js-error-message {
+  color: red;
+}
+.star {
+  display: inline;
+}
+.hidden {
+  display: none;
+}

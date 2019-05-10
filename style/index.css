@@ -1,31 +1,177 @@
 * {
   box-sizing: border-box;
 }
+
 html {
-  font-size: 16px;
+  font-size: 18px;
   color: #222;
+  margin: 0;
 }
+
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   letter-spacing: 0.05em;
   font-weight: 400;
 }
-button, input[type="text"], select, option {
+
+.container {
+  padding: 2em;
+}
+.container .left_container,
+.container .right_container {
+  display: inline-block;
+}
+.container .left_container {
+  vertical-align: top;
+  max-width: 50%;
+}
+.container .right_container {
+  max-width: 49%;
+}
+.container .right_container .bookmark {
+  list-style-image: url("../img/baseline-subdirectory_arrow_right-24px.svg");
+}
+.container .right_container .bookmark form#editBookmark {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container .right_container .bookmark form#editBookmark .bookmark_title_edit,
+.container .right_container .bookmark form#editBookmark .bookmark_url_edit,
+.container .right_container .bookmark form#editBookmark .selectContainer_edit {
+  flex-grow: 1;
+}
+.container .right_container .bookmark form#editBookmark .bookmark_description_edit {
+  width: 75%;
+  border-right: none;
+}
+.container .right_container .bookmark form#editBookmark .selectContainer_edit {
+  border: 1px solid #00f;
+  text-align: center;
+}
+.container .right_container .bookmark form#editBookmark .bookmark_title_edit {
+  border-right: none;
+  border-bottom: none;
+}
+.container .right_container .bookmark form#editBookmark .bookmark_url_edit {
+  border-bottom: none;
+}
+.container .right_container .bookmark form#editBookmark .js_edit_submit {
+  width: 100%;
+  background: #00f;
+  margin-bottom: 1em;
+  color: white;
+}
+.container .right_container .bookmark .bookmark_title {
+  font-size: 1.25em;
+  margin-bottom: 0;
+}
+.container .right_container .bookmark .bookmark_stars {
+  margin-top: 0;
+}
+.container .main_buttons {
+  display: flex;
+}
+.container .main_buttons .addItem {
+  border-right: none;
+}
+.container .main_buttons .filterBookmarks {
+  border-left: none;
+}
+.container .main_buttons form {
+  font-size: 1.25em;
+}
+.container .main_buttons #js_filter_item {
+  display: flex;
+}
+.container .create_form_div {
+  margin-top: 1em;
+}
+.container .create_form_div #js_create_form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container .create_form_div #js_create_form .itemName,
+.container .create_form_div #js_create_form .itemURL,
+.container .create_form_div #js_create_form .itemSubmit,
+.container .create_form_div #js_create_form .itemCancel {
+  flex-grow: 1;
+}
+.container .create_form_div #js_create_form .itemDescription {
+  width: 75%;
+}
+
+header h1 {
+  font-size: 2.5em;
+  text-transform: uppercase;
+}
+header h3 {
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+span.cap {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #00f;
+}
+
+button, input[type=text] {
   padding: 0.5em 1em;
 }
+
+button, input[type=text], .selectContainer, option {
+  background: transparent;
+  border: 1px solid #00f;
+  transition: all 0.2s ease;
+}
+
+select {
+  background: transparent;
+  border: 0px;
+  vertical-align: -webkit-baseline-middle;
+}
+
 button:hover {
+  cursor: pointer;
+  background: #00f;
+  color: white;
+}
+
+button.expand {
+  border: none;
+}
+button.expand:hover {
+  color: #00f;
+  background: transparent;
+}
+
+input.itemSubmit {
+  background: #00f;
+  border: 1px solid #00f;
+  color: white;
+}
+input.itemSubmit:hover {
   cursor: pointer;
 }
 
-.create_form_div {
-  border: 1px solid #222;
+.js-error-message {
+  color: red;
 }
-.bookmark_stars {
-  list-style-type: none;
-}
+
 .star {
   display: inline;
 }
+
 .hidden {
   display: none;
 }
+
+/*# sourceMappingURL=index.css.map */

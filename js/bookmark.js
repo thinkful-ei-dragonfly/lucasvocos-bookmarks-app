@@ -26,42 +26,49 @@ const bookmark = (function(){
   function generateBookmarkItem(item){
     let expanded = '',
       itemRatingString = '',
-      itemRating = item.rating;
+      itemRating = item.rating,
+      button = '<button type="submit" name="expand" class="expand">(Expand)</button>';
 
     for (var i = 0; i < itemRating; i++) {
       itemRatingString += '<i class="material-icons">star</i>';
     }
-    let itemTitle = `<p class="bookmark_title">${item.title}</p><p class="bookmark_stars">${itemRatingString}</p>`;
+    if (item.expanded) {
+      button = '<button type="submit" name="expand" class="expand">(Contract)</button>';
+      expanded = `
+      <p class='bookmark_description'>${item.desc}</p>
+      <p><a href="${item.url}" target="_blank" class="bookmark_url">Visit Site</a></p>
+      `;
+    }
+    let itemTitle = `<p class="bookmark_title">${item.title} ${button}</p><p class="bookmark_stars">${itemRatingString}</p>`;
 
 
     if (item.isEditing) {
       itemTitle = `
       <form id="editBookmark">
-          <input class="bookmark_title" placeholder="${item.title}"></input>
-          <select class="" name="itemStars">
-            <option value="" disabled selected>Bookmark Rating</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <input class="bookmark_description" placeholder="${item.desc}">
-          <input class="bookmark_url" placeholder="${item.url}">
+          <input type="text" class="bookmark_title_edit" name="editTitle" placeholder="${item.title}"></input>
+          <input type="text" class="bookmark_url_edit" name="editURL" placeholder="${item.url}">
+          <input type="text" name="editDescription" class="bookmark_description_edit" placeholder="${item.desc}">
+          <div class="selectContainer_edit">
+            <select class="" name="itemStars">
+              <option value="" disabled selected>Bookmark Rating ⬎</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+
           <button type="submit" name="submitEdit" class="js_edit_submit">Update</button>
       </form>
       `;
     }
-    if (item.expanded) {
-      expanded = `
-      <p class='bookmark_description'>${item.desc}</p>
-      <a href="${item.url}" target="_blank" class="bookmark_url">Visit</a>
-      `;
-    }
+
 
 
     return `
-    <li class="bookmark " data-item-id="${item.id}">
+    <li class="bookmark " data-item-id="${item.id}" role="listitem">
       ${itemTitle}
       ${expanded}
       <div class="bookmark_edit">
@@ -83,9 +90,9 @@ const bookmark = (function(){
       .closest('.bookmark')
       .data('item-id');
   }
-
+  // Expand
   function handleExpandBookmark(){
-    $('.bookmarks_results').on('click', '.bookmark_title', event => {
+    $('.bookmarks_results').on('click', '.expand', event => {
       let bookmarkItemID = getItemIdFromElement(event.currentTarget);
       const currentItem = store.items.find(item => item.id === bookmarkItemID);
       store.findAndUpdate(bookmarkItemID, { expanded: !currentItem.expanded });
@@ -135,7 +142,7 @@ const bookmark = (function(){
   function handleClickAddBookmarkButton() {
     $('.main_buttons').on('click', '#js_add_item', event => {
       event.preventDefault();
-      $('#js_create_form').removeClass('hidden');
+      $('.create_form_div').removeClass('hidden');
       render();
     });
   }
@@ -145,6 +152,10 @@ const bookmark = (function(){
     $('#js_create_form').submit(event => {
       event.preventDefault();
       let newBookmark = $(event.target).serializeJson();
+      $('.itemName').val('');
+      $('.itemURL').val('');
+      $('.itemDescription').val('');
+      $('select[name="rating"]').val('Bookmark Rating ⬎').change();
       api.createBookmark(newBookmark)
         .then((newItem) => {
           store.addItem(newItem);
@@ -162,7 +173,7 @@ const bookmark = (function(){
   function handleCancelAddBookmark() {
     $('#js_create_form').on('click', '.itemCancel', event => {
       event.preventDefault();
-      $('#js_create_form').addClass('hidden');
+      $('.create_form_div').addClass('hidden');
       render();
     });
   }
