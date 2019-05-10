@@ -124,13 +124,11 @@ const bookmark = (function(){
   // Submit Edit
   // Update
   function handleBookmarkSubmitEdit() {
-    // $('#editBookmark').submit(event => {
     $('.bookmarks_results').on('submit', '#editBookmark', event => {
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       let newBookmark = $(event.target).serializeJson(),
         updateStoreBookmark = JSON.parse(newBookmark);
-
       api.updateItem(id, newBookmark)
         .then(() => {
           store.findAndUpdate(id, updateStoreBookmark);
