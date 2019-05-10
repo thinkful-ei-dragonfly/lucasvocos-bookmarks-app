@@ -27,11 +27,14 @@ const bookmark = (function(){
     let expanded = '',
       itemRatingString = '',
       itemRating = item.rating,
+      bookmarkEditButton = '<button type="button" name="editButton" class="js_edit">Edit Bookmark</button>',
       button = '<button type="submit" name="expand" class="expand">(Expand)</button>';
 
+    // This loop determines how many stars to display
     for (var i = 0; i < itemRating; i++) {
       itemRatingString += '<i class="material-icons">star</i>';
     }
+
     if (item.expanded) {
       button = '<button type="submit" name="expand" class="expand">(Contract)</button>';
       expanded = `
@@ -39,10 +42,12 @@ const bookmark = (function(){
       <p><a href="${item.url}" target="_blank" class="bookmark_url">Visit Site</a></p>
       `;
     }
+
     let itemTitle = `<p class="bookmark_title">${item.title} ${button}</p><p class="bookmark_stars">${itemRatingString}</p>`;
 
 
     if (item.isEditing) {
+      bookmarkEditButton = `<button type="button" name="editButton" class="js_edit_cancel">Cancel Edit</button>`
       itemTitle = `
       <form id="editBookmark">
           <input type="text" class="bookmark_title_edit" name="title" placeholder="${item.title}"></input>
@@ -72,7 +77,7 @@ const bookmark = (function(){
       ${itemTitle}
       ${expanded}
       <div class="bookmark_edit">
-        <button type="button" name="editButton" class="js_edit">Edit Bookmark</button>
+        ${bookmarkEditButton}
         <button type="button" name="deleteButton" class="js_delete">Delete</button>
       </div>
     </li>
@@ -125,7 +130,7 @@ const bookmark = (function(){
       const id = getItemIdFromElement(event.currentTarget);
       let newBookmark = $(event.target).serializeJson(),
         updateStoreBookmark = JSON.parse(newBookmark);
-        
+
       api.updateItem(id, newBookmark)
         .then(() => {
           store.findAndUpdate(id, updateStoreBookmark);

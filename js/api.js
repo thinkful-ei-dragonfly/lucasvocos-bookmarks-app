@@ -1,11 +1,8 @@
 'use strict';
 
 const api = (function(){
-  function sayHello(){
-    console.log('Hello from api.js');
-  }
 
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/lucasvocos/bookmarks'
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/lucasvocos/bookmarks';
 
   function baseFetchMethod(...args) {
     // ...args is a spread operator meaning
@@ -65,7 +62,6 @@ const api = (function(){
     return baseFetchMethod(`${BASE_URL}/${bookmarkID}`, options);
   }
   return {
-    sayHello,
     getItems,
     createBookmark,
     deletebookmark,

@@ -1,9 +1,6 @@
 'use strict';
 
 const store = (function(){
-  function sayHello(){
-    console.log('Hello from store.js');
-  }
 
   const addItem = function(item) {
     item.expanded = false;
@@ -31,7 +28,6 @@ const store = (function(){
   };
 
   return {
-    sayHello,
     items: [],
     error: '',
     searchRating: false,

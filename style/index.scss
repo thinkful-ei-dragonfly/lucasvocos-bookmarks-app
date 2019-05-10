@@ -25,6 +25,7 @@ body {
     max-width: 49%;
     .bookmark {
       list-style-image: url('../img/baseline-subdirectory_arrow_right-24px.svg');
+      margin-bottom: 2.5em;
       form#editBookmark {
         display: flex;
         flex-wrap: wrap;
@@ -63,8 +64,6 @@ body {
         margin-top: 0;
       }
       .bookmark_url {
-        // text-decoration: underline;
-        // margin-bottom: 1em;
       }
     }
   }

@@ -30,6 +30,7 @@ body {
 }
 .container .right_container .bookmark {
   list-style-image: url("../img/baseline-subdirectory_arrow_right-24px.svg");
+  margin-bottom: 2.5em;
 }
 .container .right_container .bookmark form#editBookmark {
   display: flex;
