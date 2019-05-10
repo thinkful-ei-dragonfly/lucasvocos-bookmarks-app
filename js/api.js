@@ -36,7 +36,6 @@ const api = (function(){
     return baseFetchMethod(BASE_URL);
   }
   function createBookmark(bookmark){
-
     const options = {
       method: 'POST',
       headers: new Headers({
@@ -47,13 +46,12 @@ const api = (function(){
     return baseFetchMethod(BASE_URL, options);
   }
   function updateItem(id, updateData) {
-    let updatedItem = JSON.stringify(updateData);
     const options = {
       method: 'PATCH',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      body: updatedItem,
+      body: updateData,
     };
     return baseFetchMethod(`${BASE_URL}/${id}`, options);
   }

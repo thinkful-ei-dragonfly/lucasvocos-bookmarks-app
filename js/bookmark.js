@@ -45,11 +45,11 @@ const bookmark = (function(){
     if (item.isEditing) {
       itemTitle = `
       <form id="editBookmark">
-          <input type="text" class="bookmark_title_edit" name="editTitle" placeholder="${item.title}"></input>
-          <input type="text" class="bookmark_url_edit" name="editURL" placeholder="${item.url}">
-          <input type="text" name="editDescription" class="bookmark_description_edit" placeholder="${item.desc}">
+          <input type="text" class="bookmark_title_edit" name="title" placeholder="${item.title}"></input>
+          <input type="text" class="bookmark_url_edit" name="url" placeholder="${item.url}">
+          <input type="text" name="desc" class="bookmark_description_edit" placeholder="${item.desc}">
           <div class="selectContainer_edit">
-            <select class="" name="itemStars">
+            <select class="" name="rating">
               <option value="" disabled selected>Bookmark Rating ⬎</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -119,14 +119,16 @@ const bookmark = (function(){
   // Submit Edit
   // Update
   function handleBookmarkSubmitEdit() {
-    $('#editBookmark').submit(event => {
+    // $('#editBookmark').submit(event => {
+    $('.bookmarks_results').on('submit', '#editBookmark', event => {
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
-      let newBookmark = $(event.target).serializeJson();
-      debugger;
+      let newBookmark = $(event.target).serializeJson(),
+        updateStoreBookmark = JSON.parse(newBookmark);
+        
       api.updateItem(id, newBookmark)
         .then(() => {
-          store.findAndUpdate(id, newBookmark);
+          store.findAndUpdate(id, updateStoreBookmark);
           render();
         })
         .catch(error => {
