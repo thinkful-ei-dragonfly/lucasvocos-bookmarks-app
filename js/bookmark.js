@@ -47,15 +47,15 @@ const bookmark = (function(){
 
 
     if (item.isEditing) {
-      bookmarkEditButton = `<button type="button" name="editButton" class="js_edit_cancel">Cancel Edit</button>`
+      bookmarkEditButton = '<button type="button" name="editButton" class="js_edit_cancel">Cancel Edit</button>';
       itemTitle = `
       <form id="editBookmark">
-          <input type="text" class="bookmark_title_edit" name="title" placeholder="${item.title}"></input>
-          <input type="text" class="bookmark_url_edit" name="url" placeholder="${item.url}">
-          <input type="text" name="desc" class="bookmark_description_edit" placeholder="${item.desc}">
+          <input type="text" class="bookmark_title_edit" name="title" value="${item.title}"></input>
+          <input type="text" class="bookmark_url_edit" name="url" value="${item.url}">
+          <input type="text" name="desc" class="bookmark_description_edit" value="${item.desc}">
           <div class="selectContainer_edit">
             <select class="" name="rating">
-              <option value="" disabled selected>Bookmark Rating ⬎</option>
+              <option value="" disabled selected>Update Rating ⬎</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

@@ -134,8 +134,13 @@ button, input[type=text], .selectContainer, option {
   transition: all 0.2s ease;
 }
 
+.selectContainer {
+  padding: 0 0.5em;
+}
+
 select {
   background: transparent;
+  -webkit-appearance: none;
   border: 0px;
   vertical-align: -webkit-baseline-middle;
 }
