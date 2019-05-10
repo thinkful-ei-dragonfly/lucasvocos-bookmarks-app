@@ -65,7 +65,7 @@ const bookmark = (function(){
           </div>
 
 
-          <button type="submit" name="submitEdit" class="js_edit_submit">Update</button>
+          <button type="submit"  class="js_edit_submit">Update</button>
       </form>
       `;
     }
