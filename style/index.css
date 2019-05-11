@@ -3,7 +3,6 @@
 }
 
 html {
-  font-size: 18px;
   color: #222;
   margin: 0;
 }
@@ -12,6 +11,12 @@ body {
   font-family: "Times New Roman", Times, serif;
   letter-spacing: 0.05em;
   font-weight: 400;
+  font-size: 18px;
+}
+@media (max-width: 1000px) {
+  body {
+    font-size: 20px;
+  }
 }
 
 .container {
@@ -100,6 +105,16 @@ body {
 .container .create_form_div #js_create_form .itemDescription {
   width: 75%;
 }
+@media (max-width: 1000px) {
+  .container .left_container,
+.container .right_container {
+    display: block;
+    max-width: 100%;
+  }
+  .container .right_container {
+    margin-top: 75px;
+  }
+}
 
 header h1 {
   font-size: 2.5em;
@@ -136,6 +151,7 @@ button, input[type=text], .selectContainer, option {
 
 .selectContainer {
   padding: 0 0.5em;
+  display: flex;
 }
 
 select {

@@ -27,8 +27,8 @@ const bookmark = (function(){
     let expanded = '',
       itemRatingString = '',
       itemRating = item.rating,
-      bookmarkEditButton = '<button type="button" name="editButton" class="js_edit">Edit Bookmark</button>',
-      button = '<button type="submit" name="expand" class="expand">(Expand)</button>';
+      bookmarkEditButton = '<button type="button" name="editButton" class="js_edit" role="button">Edit Bookmark</button>',
+      button = '<button type="submit" name="expand" class="expand" role="button">(Expand)</button>';
 
     // This loop determines how many stars to display
     for (var i = 0; i < itemRating; i++) {
@@ -36,10 +36,10 @@ const bookmark = (function(){
     }
 
     if (item.expanded) {
-      button = '<button type="submit" name="expand" class="expand">(Contract)</button>';
+      button = '<button type="submit" name="expand" class="expand" role="button">(Contract)</button>';
       expanded = `
       <p class='bookmark_description'>${item.desc}</p>
-      <p><a href="${item.url}" target="_blank" class="bookmark_url">Visit Site</a></p>
+      <p><a href="${item.url}" target="_blank" title="${item.desc}" class="bookmark_url">Visit ${item.title}</a></p>
       `;
     }
 
@@ -49,13 +49,13 @@ const bookmark = (function(){
     if (item.isEditing) {
       bookmarkEditButton = '<button type="button" name="editButton" class="js_edit_cancel">Cancel Edit</button>';
       itemTitle = `
-      <form id="editBookmark">
-          <input type="text" class="bookmark_title_edit" name="title" value="${item.title}"></input>
-          <input type="text" class="bookmark_url_edit" name="url" value="${item.url}">
-          <input type="text" name="desc" class="bookmark_description_edit" value="${item.desc}">
+      <form id="editBookmark" role="form">
+          <input type="text" class="bookmark_title_edit" name="title" role="textbox" value="${item.title}"></input>
+          <input type="text" class="bookmark_url_edit" name="url" role="textbox" value="${item.url}">
+          <input type="text" name="desc" class="bookmark_description_edit" role="textbox" value="${item.desc}">
           <div class="selectContainer_edit">
             <select class="" name="rating">
-              <option value="" disabled selected>Update Rating ⬎</option>
+              <option value="" disabled selected>Update ⬎</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -65,7 +65,7 @@ const bookmark = (function(){
           </div>
 
 
-          <button type="submit"  class="js_edit_submit">Update</button>
+          <button type="submit"  class="js_edit_submit" role="button">Update</button>
       </form>
       `;
     }
@@ -78,7 +78,7 @@ const bookmark = (function(){
       ${expanded}
       <div class="bookmark_edit">
         ${bookmarkEditButton}
-        <button type="button" name="deleteButton" class="js_delete">Delete</button>
+        <button type="button" name="deleteButton" class="js_delete" role="button">Delete</button>
       </div>
     </li>
     `;

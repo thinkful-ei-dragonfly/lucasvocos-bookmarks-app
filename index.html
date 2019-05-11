@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -16,8 +15,8 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="left_container">
+  <div class="container" role="main">
+    <aside class="left_container">
       <header role="banner">
         <h1>📚 Bookmarks</h1>
         <h3><span class="cap"><a href="https://www.thinkful.com/bootcamp/web-development/full-time/">Thinkful.com</a></span> Engineering Immersion API practice</h3>
@@ -39,16 +38,16 @@
             </select>
           </div>
 
-          <button type="submit" name="filterBookmarks" placeholder="Filter" class="filterBookmarks">Filter</button>
+          <button type="submit" name="filterBookmarks" placeholder="Filter" class="filterBookmarks" role="button">Filter</button>
         </form>
       </div>
       <div class="create_form_div hidden">
-        <form id="js_create_form">
-          <input type="text" name="title" class="itemName" placeholder="Bookmark Name">
-          <input type="text" name="url" class="itemURL" placeholder="Bookmark URL">
+        <form id="js_create_form" role="form">
+          <input type="text" name="title" class="itemName" placeholder="Bookmark Name" role="textbox">
+          <input type="text" name="url" class="itemURL" placeholder="Bookmark URL" role="textbox">
           <div class="selectContainer">
             <select class="" name="rating">
-              <option value="" disabled selected>Bookmark Rating ⬎</option>
+              <option value="" disabled selected>Rating ⬎</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -56,19 +55,19 @@
               <option value="5">5</option>
             </select>
           </div>
-          <input type="text" name="desc" class="itemDescription" placeholder="Bookmark Description">
-          <input type="submit" name="itemSubmit" class="itemSubmit" placeholder="Create">
-          <button type="submit" name="itemCancel" class="itemCancel" placeholder="Cancel">Cancel</button
+          <input type="text" name="desc" class="itemDescription" placeholder="Bookmark Description" role="textbox">
+          <input type="submit" name="itemSubmit" class="itemSubmit" placeholder="Create" role="button">
+          <button type="submit" name="itemCancel" class="itemCancel" placeholder="Cancel" role="button">Cancel</button
         </form>
       </div>
       <div class="js-error-message hidden">
         <p>Error message goes here. X button will erase the error from the store</p>
       </div>
-    </div>
-    <div class="right_container">
+    </aside>
+    <aside class="right_container">
       <ul class="bookmarks_results" role="list">
       </ul>
-    </div>
+    </aside>
 
 
   </div>
